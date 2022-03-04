@@ -13,6 +13,7 @@
         <Description>A C# library that provides more LINQ extension methods.</Description>
         <RepositoryUrl>https://github.com/Carnagion/MoreLinq</RepositoryUrl>
         <RepositoryType>Git</RepositoryType>
+        <PackageReadmeFile>README.md</PackageReadmeFile>
         <PackageTags>LINQ</PackageTags>
         <PackageLicenseFile>LICENSE</PackageLicenseFile>
     </PropertyGroup>
@@ -29,6 +30,7 @@
       <Reference Include="Bibliographer, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null">
         <HintPath>..\Bibliographer\bin\Release\netstandard2.1\Bibliographer.dll</HintPath>
       </Reference>
+        <None Include="README.md" Pack="true" PackagePath=""/>
         <None Include="LICENSE" Pack="true" PackagePath=""/>
     </ItemGroup>
 
