@@ -5,6 +5,16 @@
         <RootNamespace>System.Linq</RootNamespace>
         <Nullable>enable</Nullable>
         <TargetFrameworks>net5.0;netstandard2.1</TargetFrameworks>
+        <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+        <PackageId>Carnagion.MoreLinq</PackageId>
+        <PackageVersion>1.1.0</PackageVersion>
+        <Title>MoreLinq</Title>
+        <Authors>Carnagion</Authors>
+        <Description>A C# library that provides more LINQ extension methods.</Description>
+        <RepositoryUrl>https://github.com/Carnagion/MoreLinq</RepositoryUrl>
+        <RepositoryType>Git</RepositoryType>
+        <PackageTags>LINQ</PackageTags>
+        <PackageLicenseFile>LICENSE</PackageLicenseFile>
     </PropertyGroup>
 
     <PropertyGroup Condition=" '$(Configuration)' == 'Debug' ">
@@ -19,6 +29,7 @@
       <Reference Include="Bibliographer, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null">
         <HintPath>..\Bibliographer\bin\Release\netstandard2.1\Bibliographer.dll</HintPath>
       </Reference>
+        <None Include="LICENSE" Pack="true" PackagePath=""/>
     </ItemGroup>
 
 </Project>
