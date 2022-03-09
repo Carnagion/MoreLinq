@@ -17,7 +17,7 @@ namespace System.Linq
         public static IEnumerable<T> Alternate<T>(this IEnumerable<T> source, bool beginFromOne = false)
         {
             int mod = beginFromOne ? 1 : 0;
-            return source.WhereIndex(index => (index % 2) == mod);
+            return source.Where((element, index) => (index % 2) == mod);
         }
     }
 }
