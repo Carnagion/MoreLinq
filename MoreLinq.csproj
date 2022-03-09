@@ -30,8 +30,8 @@
       <Reference Include="Bibliographer, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null">
         <HintPath>..\Bibliographer\bin\Release\netstandard2.1\Bibliographer.dll</HintPath>
       </Reference>
-        <None Include="README.md" Pack="true" PackagePath=""/>
-        <None Include="LICENSE" Pack="true" PackagePath=""/>
+        <None Include="README.md" Pack="true" PackagePath="" />
+        <None Include="LICENSE" Pack="true" PackagePath="" />
     </ItemGroup>
 
 </Project>
