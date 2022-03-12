@@ -15,6 +15,11 @@ namespace System.Linq
         [Pure]
         public static IEnumerable<(T, T)> Pair<T>(this IEnumerable<T> source)
         {
+            if (source is null)
+            {
+                throw new ArgumentNullException(nameof(source));
+            }
+            
             T[] array = source.ToArray();
             return from item1 in array
                    from item2 in array

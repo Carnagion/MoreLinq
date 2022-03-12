@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using System.Diagnostics.Contracts;
+using System.Xml.Xsl;
 
 namespace System.Linq
 {
@@ -17,7 +18,7 @@ namespace System.Linq
         [Pure]
         public static IEnumerable<T> Before<T>(this IEnumerable<T> source, T element)
         {
-            return source.Before(element, (left, right) => Object.Equals(left, right));
+            return source is null ? throw new ArgumentNullException(nameof(source)) : source.TakeWhile(other => Object.Equals(other, element));
         }
 
         /// <summary>
@@ -40,15 +41,7 @@ namespace System.Linq
             {
                 throw new ArgumentNullException(nameof(equals));
             }
-
-            foreach (T other in source)
-            {
-                if (equals.Invoke(other, element))
-                {
-                    break;
-                }
-                yield return other;
-            }
+            return source.TakeWhile(other => !equals.Invoke(other, element));
         }
     }
 }

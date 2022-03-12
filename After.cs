@@ -17,7 +17,7 @@ namespace System.Linq
         [Pure]
         public static IEnumerable<T> After<T>(this IEnumerable<T> source, T element)
         {
-            return source.After(element, (left, right) => Object.Equals(left, right));
+            return source is null ? throw new ArgumentNullException(nameof(source)) : IEnumerableExtensions.AfterIterator(source, element, (left, right) => Object.Equals(left, right));
         }
 
         /// <summary>
@@ -40,7 +40,12 @@ namespace System.Linq
             {
                 throw new ArgumentNullException(nameof(equals));
             }
-            
+            return IEnumerableExtensions.AfterIterator(source, element, equals);
+        }
+
+        [Pure]
+        private static IEnumerable<T> AfterIterator<T>(IEnumerable<T> source, T element, Func<T, T, bool> equals)
+        {
             bool yield = false;
             foreach (T other in source)
             {

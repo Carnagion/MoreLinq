@@ -25,11 +25,16 @@ namespace System.Linq
             {
                 throw new ArgumentNullException(nameof(yield));
             }
-            
+            return IEnumerableExtensions.GenerateIterator(count, yield);
+        }
+
+        [Pure]
+        private static IEnumerable<T> GenerateIterator<T>(int count, Func<int, T> yield)
+        {
             for (int index = 0; index < count; index += 1)
             {
                 yield return yield.Invoke(index);
-            }
+            }  
         }
     }
 }
