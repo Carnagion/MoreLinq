@@ -1,6 +1,5 @@
 using System.Collections.Generic;
 using System.Diagnostics.Contracts;
-using System.Xml.Xsl;
 
 namespace System.Linq
 {
