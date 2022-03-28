@@ -57,6 +57,7 @@ namespace System.Linq
                     current = element;
                 }
             }
+            // Disable nullability warning as return value will only be null if the randomly picked element was null, which is ok
 #pragma warning disable 8603
             return count is 0 ? throw new InvalidOperationException("Sequence was empty") : current;
 #pragma warning restore 8603
