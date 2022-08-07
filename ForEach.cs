@@ -2,7 +2,7 @@ using System.Collections.Generic;
 
 namespace System.Linq
 {
-    public static partial class IEnumerableExtensions
+    public static partial class EnumerableExtensions
     {
         /// <summary>
         /// Executes <paramref name="function"/> over every item in <paramref name="source"/>.
@@ -27,7 +27,6 @@ namespace System.Linq
                 function.Invoke(item);
             }
         }
-
         
         /// <summary>
         /// Executes <paramref name="function"/> over every item in <paramref name="source"/>.
@@ -46,7 +45,7 @@ namespace System.Linq
             {
                 throw new ArgumentNullException(nameof(function));
             }
-
+            
             int index = 0;
             foreach (T item in source)
             {

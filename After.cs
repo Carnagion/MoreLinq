@@ -3,7 +3,7 @@ using System.Diagnostics.Contracts;
 
 namespace System.Linq
 {
-    public static partial class IEnumerableExtensions
+    public static partial class EnumerableExtensions
     {
         /// <summary>
         /// Returns all elements in <paramref name="source"/> that come after <paramref name="element"/>.
@@ -13,13 +13,12 @@ namespace System.Linq
         /// <typeparam name="T">The <see cref="Type"/> of element in <paramref name="source"/>.</typeparam>
         /// <returns>An <see cref="IEnumerable{T}"/> of all elements in <paramref name="source"/> that appear after <paramref name="element"/>.</returns>
         /// <exception cref="ArgumentNullException">Thrown if <paramref name="source"/> is <see langword="null"/>.</exception>
-        /// <remarks>This method results in boxing for <see cref="ValueType"/>s. To prevent this, use <see cref="After{T}(System.Collections.Generic.IEnumerable{T},T,Func{T,T,bool})"/> instead.</remarks>
         [Pure]
         public static IEnumerable<T> After<T>(this IEnumerable<T> source, T element)
         {
-            return source is null ? throw new ArgumentNullException(nameof(source)) : IEnumerableExtensions.AfterIterator(source, element, (left, right) => Object.Equals(left, right));
+            return source is null ? throw new ArgumentNullException(nameof(source)) : EnumerableExtensions.AfterIterator(source, element, EqualityComparer<T>.Default.Equals);
         }
-
+        
         /// <summary>
         /// Returns all elements in <paramref name="source"/> that come after <paramref name="element"/>.
         /// </summary>
@@ -40,10 +39,9 @@ namespace System.Linq
             {
                 throw new ArgumentNullException(nameof(equals));
             }
-            return IEnumerableExtensions.AfterIterator(source, element, equals);
+            return EnumerableExtensions.AfterIterator(source, element, equals);
         }
-
-        [Pure]
+        
         private static IEnumerable<T> AfterIterator<T>(IEnumerable<T> source, T element, Func<T, T, bool> equals)
         {
             bool yield = false;

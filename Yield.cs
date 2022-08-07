@@ -3,7 +3,7 @@ using System.Diagnostics.Contracts;
 
 namespace System.Linq
 {
-    public static partial class IEnumerableExtensions
+    public static partial class EnumerableExtensions
     {
         /// <summary>
         /// Creates a new sequence from a single element.

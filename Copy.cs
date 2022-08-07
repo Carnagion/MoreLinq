@@ -3,7 +3,7 @@ using System.Diagnostics.Contracts;
 
 namespace System.Linq
 {
-    public static partial class IEnumerableExtensions
+    public static partial class EnumerableExtensions
     {
         /// <summary>
         /// Returns a copy of <paramref name="source"/>.
@@ -15,12 +15,7 @@ namespace System.Linq
         [Pure]
         public static IEnumerable<T> Copy<T>(this IEnumerable<T> source)
         {
-            if (source is null)
-            {
-                throw new ArgumentNullException(nameof(source));
-            }
-            return from item in source
-                   select item;
+            return source.Select(element => element);
         }
     }
 }

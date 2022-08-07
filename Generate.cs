@@ -3,7 +3,7 @@ using System.Diagnostics.Contracts;
 
 namespace System.Linq
 {
-    public static partial class IEnumerableExtensions
+    public static partial class EnumerableExtensions
     {
         /// <summary>
         /// Generates an <see cref="IEnumerable{T}"/> with <paramref name="count"/> elements according to <paramref name="yield"/>.
@@ -12,29 +12,11 @@ namespace System.Linq
         /// <param name="yield">A <see cref="Func{Int32,T}"/> that generates elements for each index.</param>
         /// <typeparam name="T">The <see cref="Type"/> of elements in the result.</typeparam>
         /// <returns>A new <see cref="IEnumerable{T}"/> with <paramref name="count"/> elements generated using <paramref name="yield"/>.</returns>
-        /// <exception cref="ArgumentException">Thrown if <paramref name="count"/> is less than 1.</exception>
-        /// <exception cref="ArgumentNullException">Thrown if <paramref name="yield"/> is <see langword="null"/>.</exception>
+        /// <exception cref="ArgumentOutOfRangeException">Thrown if <paramref name="count"/> is less than 0 or greater than <see cref="Int32.MaxValue"/>.</exception>
         [Pure]
         public static IEnumerable<T> Generate<T>(int count, Func<int, T> yield)
         {
-            if (count <= 0)
-            {
-                throw new ArgumentException($"Count must be a positive integer.", nameof(count));
-            }
-            if (yield is null)
-            {
-                throw new ArgumentNullException(nameof(yield));
-            }
-            return IEnumerableExtensions.GenerateIterator(count, yield);
-        }
-
-        [Pure]
-        private static IEnumerable<T> GenerateIterator<T>(int count, Func<int, T> yield)
-        {
-            for (int index = 0; index < count; index += 1)
-            {
-                yield return yield.Invoke(index);
-            }  
+            return Enumerable.Range(0, count).Select(yield);
         }
     }
 }

@@ -3,7 +3,7 @@ using System.Diagnostics.Contracts;
 
 namespace System.Linq
 {
-    public static partial class IEnumerableExtensions
+    public static partial class EnumerableExtensions
     {
         /// <summary>
         /// Yields every element from an <see cref="IEnumerable{T}"/> of <see cref="IEnumerable{T}"/>s.
@@ -15,13 +15,7 @@ namespace System.Linq
         [Pure]
         public static IEnumerable<T> Flatten<T>(this IEnumerable<IEnumerable<T>> source)
         {
-            if (source is null)
-            {
-                throw new ArgumentNullException(nameof(source));
-            }
-            return from sequence in source
-                   from element in sequence
-                   select element;
+            return source.SelectMany(sequence => sequence);
         }
     }
 }

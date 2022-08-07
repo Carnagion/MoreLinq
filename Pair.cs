@@ -3,7 +3,7 @@ using System.Diagnostics.Contracts;
 
 namespace System.Linq
 {
-    public static partial class IEnumerableExtensions
+    public static partial class EnumerableExtensions
     {
         /// <summary>
         /// Returns a sequence containing every possible combination of pairs from <paramref name="source"/>.
@@ -15,15 +15,8 @@ namespace System.Linq
         [Pure]
         public static IEnumerable<(T, T)> Pair<T>(this IEnumerable<T> source)
         {
-            if (source is null)
-            {
-                throw new ArgumentNullException(nameof(source));
-            }
-            
             T[] array = source.ToArray();
-            return from item1 in array
-                   from item2 in array
-                   select (item1, item2);
+            return array.SelectMany(_ => array, (element1, element2) => (element1, element2));
         }
     }
 }

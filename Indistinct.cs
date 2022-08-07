@@ -2,7 +2,7 @@ using System.Collections.Generic;
 
 namespace System.Linq
 {
-    public static partial class IEnumerableExtensions
+    public static partial class EnumerableExtensions
     {
         /// <summary>
         /// Finds elements that are contained more than once in <paramref name="source"/>.
@@ -13,45 +13,20 @@ namespace System.Linq
         /// <exception cref="ArgumentNullException">Thrown if <paramref name="source"/> is <see langword="null"/>.</exception>
         public static IEnumerable<T> Indistinct<T>(this IEnumerable<T> source)
         {
-            return source is null ? throw new ArgumentNullException(nameof(source)) : IEnumerableExtensions.IndistinctIterator(source);
+            return source is null
+                ? throw new ArgumentNullException(nameof(source))
+                : EnumerableExtensions.IndistinctIterator(source).Distinct();
         }
-
+        
         private static IEnumerable<T> IndistinctIterator<T>(IEnumerable<T> source)
         {
-            // Disable nullability warning as null is handled inside the loop
-#pragma warning disable 8714
-            Dictionary<T, bool> visited = new();
-#pragma warning restore 8714
-            bool? nullYielded = null;
-            
+            HashSet<T> visited = new();
             foreach (T element in source)
             {
-                // Handle null separately since Dictionary<TKey, TValue> cannot have null as a key
-                if (element is null)
+                if (!visited.Add(element))
                 {
-                    if (nullYielded is null)
-                    {
-                        nullYielded = false;
-                    }
-                    else if (!nullYielded.Value)
-                    {
-                        yield return element;
-                        nullYielded = true;
-                    }
-                    continue;
+                    yield return element;
                 }
-                
-                if (!visited.TryGetValue(element, out bool yielded))
-                {
-                    visited[element] = false;
-                    continue;
-                }
-                if (yielded)
-                {
-                    continue;
-                }
-                visited[element] = true;
-                yield return element;
             }
         }
     }

@@ -3,7 +3,7 @@ using System.Diagnostics.Contracts;
 
 namespace System.Linq
 {
-    public static partial class IEnumerableExtensions
+    public static partial class EnumerableExtensions
     {
         /// <summary>
         /// Duplicates the items in <paramref name="source"/> <paramref name="amount"/> times.
@@ -28,11 +28,10 @@ namespace System.Linq
             return amount switch
             {
                 0 => source,
-                _ => IEnumerableExtensions.DuplicateIterator(source, amount),
+                _ => EnumerableExtensions.DuplicateIterator(source, amount),
             };
         }
-
-        [Pure]
+        
         private static IEnumerable<T> DuplicateIterator<T>(IEnumerable<T> source, int amount)
         {
             foreach (T element in source)

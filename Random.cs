@@ -1,11 +1,9 @@
 using System.Collections.Generic;
 using System.Diagnostics.Contracts;
 
-using Bibliographer.Mla;
-
 namespace System.Linq
 {
-    public static partial class IEnumerableExtensions
+    public static partial class EnumerableExtensions
     {
         /// <summary>
         /// Picks a random element from <paramref name="source"/>.
@@ -20,7 +18,7 @@ namespace System.Linq
         {
             return source.Random(new());
         }
-
+        
         /// <summary>
         /// Picks a random element from <paramref name="source"/> using <paramref name="randomiser"/>.
         /// </summary>
@@ -30,11 +28,6 @@ namespace System.Linq
         /// <returns>A randomly chosen element from <paramref name="source"/>.</returns>
         /// <exception cref="ArgumentNullException">Thrown if either <paramref name="source"/> or <paramref name="randomiser"/> is <see langword="null"/>.</exception>
         /// <exception cref="InvalidOperationException">Thrown if <paramref name="source"/> is empty.</exception>
-        [Author("Jon", "Skeet")]
-        [Title("Random row from Linq to Sql")]
-        [Container("StackOverflow")]
-        [Location("https://stackoverflow.com/questions/648196/random-row-from-linq-to-sql/648240#648240")]
-        [Accessed(2022, 1, 25)]
         [Pure]
         public static T Random<T>(this IEnumerable<T> source, Random randomiser)
         {
@@ -46,7 +39,7 @@ namespace System.Linq
             {
                 throw new ArgumentNullException(nameof(randomiser));
             }
-
+            
             T? current = default;
             int count = 0;
             foreach (T element in source)
@@ -57,10 +50,7 @@ namespace System.Linq
                     current = element;
                 }
             }
-            // Disable nullability warning as return value will only be null if the randomly picked element was null, which is ok
-#pragma warning disable 8603
-            return count is 0 ? throw new InvalidOperationException("Sequence was empty") : current;
-#pragma warning restore 8603
+            return count is 0 ? throw new InvalidOperationException("Sequence was empty") : current!;
         }
         
         /// <summary>
@@ -74,7 +64,7 @@ namespace System.Linq
         {
             return source.RandomOrDefault(new());
         }
-
+        
         /// <summary>
         /// Picks a random element from <paramref name="source"/> using <paramref name="randomiser"/>.
         /// </summary>
@@ -93,7 +83,7 @@ namespace System.Linq
             {
                 throw new ArgumentNullException(nameof(randomiser));
             }
-
+            
             T? current = default;
             int count = 0;
             foreach (T element in source)

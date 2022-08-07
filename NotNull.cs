@@ -3,7 +3,7 @@ using System.Diagnostics.Contracts;
 
 namespace System.Linq
 {
-    public static partial class IEnumerableExtensions
+    public static partial class EnumerableExtensions
     {
         /// <summary>
         /// Filters all elements from <paramref name="source"/> that are not <see langword="null"/>.
@@ -15,13 +15,7 @@ namespace System.Linq
         [Pure]
         public static IEnumerable<T> NotNull<T>(this IEnumerable<T?> source)
         {
-            if (source is null)
-            {
-                throw new ArgumentNullException(nameof(source));
-            }
-            return (from element in source
-                    where element is not null
-                    select element)!;
+            return source.Where(element => element is not null)!;
         }
     }
 }

@@ -3,7 +3,7 @@ using System.Diagnostics.Contracts;
 
 namespace System.Linq
 {
-    public static partial class IEnumerableExtensions
+    public static partial class EnumerableExtensions
     {
         /// <summary>
         /// Picks alternating elements from <paramref name="source"/>.
@@ -16,13 +16,8 @@ namespace System.Linq
         [Pure]
         public static IEnumerable<T> Alternate<T>(this IEnumerable<T> source, bool beginFromOne = false)
         {
-            if (source is null)
-            {
-                throw new ArgumentNullException(nameof(source));
-            }
-            
             int mod = beginFromOne ? 1 : 0;
-            return source.Where((element, index) => (index % 2) == mod);
+            return source.Where((_, index) => (index % 2) == mod);
         }
     }
 }

@@ -2,7 +2,7 @@ using System.Collections.Generic;
 
 namespace System.Linq
 {
-    public static partial class IEnumerableExtensions
+    public static partial class EnumerableExtensions
     {
         /// <summary>
         /// Executes <paramref name="function"/> over every item in <paramref name="source"/>, yielding the elements back.
@@ -22,9 +22,8 @@ namespace System.Linq
             {
                 throw new ArgumentNullException(nameof(function));
             }
-            return IEnumerableExtensions.ExecuteIterator(source, function);
+            return EnumerableExtensions.ExecuteIterator(source, function);
         }
-
         
         /// <summary>
         /// Executes <paramref name="function"/> over every item in <paramref name="source"/>, yielding the elements back.
@@ -44,9 +43,9 @@ namespace System.Linq
             {
                 throw new ArgumentNullException(nameof(function));
             }
-            return IEnumerableExtensions.ExecuteIterator(source, function);
+            return EnumerableExtensions.ExecuteIterator(source, function);
         }
-
+        
         private static IEnumerable<T> ExecuteIterator<T>(IEnumerable<T> source, Action<T> function)
         {
             foreach (T element in source)
@@ -55,7 +54,7 @@ namespace System.Linq
                 yield return element;
             }
         }
-
+        
         private static IEnumerable<T> ExecuteIterator<T>(IEnumerable<T> source, Action<T, int> function)
         {
             int index = 0;

@@ -3,7 +3,7 @@ using System.Diagnostics.Contracts;
 
 namespace System.Linq
 {
-    public static partial class IEnumerableExtensions
+    public static partial class EnumerableExtensions
     {
         /// <summary>
         /// Gets all elements between <paramref name="from"/> and <paramref name="to"/> in <paramref name="source"/>.
@@ -35,10 +35,11 @@ namespace System.Linq
             {
                 throw new ArgumentException("End index must be equal to or less than start index", nameof(to));
             }
-            return from == to ? source.ElementAt(from).Yield() : IEnumerableExtensions.BetweenIterator(source, from, to);
+            return from == to
+                ? source.ElementAt(from).Yield()
+                : EnumerableExtensions.BetweenIterator(source, from, to);
         }
-
-        [Pure]
+        
         private static IEnumerable<T> BetweenIterator<T>(IEnumerable<T> source, int from, int to)
         {
             int index = 0;
@@ -50,7 +51,7 @@ namespace System.Linq
                 }
                 index += 1;
             }
-
+            
             if (from > index)
             {
                 throw new ArgumentOutOfRangeException(nameof(from));

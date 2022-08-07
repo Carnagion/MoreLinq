@@ -4,7 +4,7 @@ using System.Diagnostics.Contracts;
 
 namespace System.Linq
 {
-    public static partial class IEnumerableExtensions
+    public static partial class EnumerableExtensions
     {
         /// <summary>
         /// Inserts <paramref name="values"/> into <paramref name="source"/> at the index specified by <paramref name="index"/>.
@@ -32,11 +32,10 @@ namespace System.Linq
             {
                 throw new ArgumentException("Index must be a non-negative integer", nameof(index));
             }
-            return IEnumerableExtensions.InsertIterator(source, values, index);
+            return EnumerableExtensions.InsertIterator(source, values, index);
         }
-
+        
         [SuppressMessage("ReSharper", "PossibleMultipleEnumeration")]
-        [Pure]
         private static IEnumerable<T> InsertIterator<T>(IEnumerable<T> source, IEnumerable<T> values, int index)
         {
             int currentIndex = 0;

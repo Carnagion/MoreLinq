@@ -2,7 +2,7 @@ using System.Collections.Generic;
 
 namespace System.Linq
 {
-    public static partial class IEnumerableExtensions
+    public static partial class EnumerableExtensions
     {
         /// <summary>
         /// Returns the index of <paramref name="element"/> in <paramref name="source"/>.
@@ -15,9 +15,9 @@ namespace System.Linq
         /// <remarks>This method results in boxing for <see cref="ValueType"/>s. To prevent this, use <see cref="IndexOf{T}(System.Collections.Generic.IEnumerable{T},T,Func{T,T,bool})"/> instead.</remarks>
         public static int IndexOf<T>(this IEnumerable<T> source, T element)
         {
-            return source.IndexOf(element, (left, right) => Object.Equals(left, right));
+            return source.IndexOf(element, EqualityComparer<T>.Default.Equals);
         }
-
+        
         /// <summary>
         /// Returns the index of <paramref name="element"/> in <paramref name="source"/>, using <paramref name="equals"/> to compare each element.
         /// </summary>
