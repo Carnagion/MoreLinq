@@ -7,7 +7,7 @@
         <GenerateDocumentationFile>true</GenerateDocumentationFile>
         <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
         <PackageId>Carnagion.MoreLinq</PackageId>
-        <PackageVersion>1.3.0</PackageVersion>
+        <PackageVersion>1.4.0</PackageVersion>
         <Title>MoreLinq</Title>
         <Authors>Carnagion</Authors>
         <Description>A C# library that provides more LINQ extension methods.</Description>
