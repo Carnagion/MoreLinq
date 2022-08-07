@@ -2,7 +2,7 @@
 
 A C# library that provides useful LINQ extension methods.
 
-Located in the `System.Linq.EnumerableExtensions` static class, the extension methods cover many common use cases related to `IEnumerable<T>`, including but not limited to:
+Located in the `System.Linq.EnumerableExtensions` static class, **MoreLinq**'s extension methods cover many common use cases related to `IEnumerable<T>`, including but not limited to:
 
 - Getting all elements after or before a value
 - Getting all elements between two indexes
