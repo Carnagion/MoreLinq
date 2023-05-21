@@ -1,13 +1,13 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
     <PropertyGroup>
         <LangVersion>default</LangVersion>
         <RootNamespace>System.Linq</RootNamespace>
         <Nullable>enable</Nullable>
-        <TargetFrameworks>net5.0;netstandard2.1</TargetFrameworks>
+        <TargetFrameworks>net6.0</TargetFrameworks>
         <GenerateDocumentationFile>true</GenerateDocumentationFile>
         <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
         <PackageId>Carnagion.MoreLinq</PackageId>
-        <PackageVersion>1.4.0</PackageVersion>
+        <PackageVersion>2.0.0</PackageVersion>
         <Title>MoreLinq</Title>
         <Authors>Carnagion</Authors>
         <Description>A C# library that provides more LINQ extension methods.</Description>

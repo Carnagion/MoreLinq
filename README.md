@@ -20,4 +20,4 @@ Almost all extension methods are pure and declarative, keeping to true LINQ and 
 
 # Installation
 
-**MoreLinq** is available as a [NuGet package](https://www.nuget.org/packages/Carnagion.MoreLinq/) for .NET 5.0 and .NET Standard 2.1.
+**MoreLinq** is available as a [NuGet package](https://www.nuget.org/packages/Carnagion.MoreLinq/) for .NET 6.0
